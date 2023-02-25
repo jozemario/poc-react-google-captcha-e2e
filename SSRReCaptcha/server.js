@@ -1,8 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
-import dotenv from 'dotenv'
-console.log(process.env)
+
 import express from 'express'
 import apiRouter from './routes.js'
 
@@ -11,6 +10,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const isTest = process.env.VITEST
 
 process.env.MY_CUSTOM_SECRET = 'API_KEY_qwertyuiop'
+
+console.log(import.meta)
 
 export async function createServer(
     root = process.cwd(),
@@ -102,8 +103,8 @@ export async function createServer(
 
 if (!isTest) {
     createServer().then(({ app }) =>
-        app.listen(3000, () => {
-            console.log(`http://localhost:3000`)
+        app.listen(80, () => {
+            console.log(`http://localhost:80`)
         }),
     )
 }
