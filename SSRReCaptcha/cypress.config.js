@@ -4,11 +4,12 @@ import vitePreprocessor from 'cypress-vite'
 
 
 export default defineConfig({
+  chromeWebSecurity: false,
   e2e: {
-    baseUrl: 'http://localhost:3000/',
+    baseUrl: 'http://echo3.cincoceroseis.com/',
     viewportWidth: 1280,
     viewportHeight: 768,
-    specPattern: '**/*.e2e.ts',
+    specPattern: 'cypress/e2e/*.cy.js',
     video: false,
     screenshotOnRunFailure: false,
 

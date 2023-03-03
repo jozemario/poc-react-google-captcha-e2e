@@ -58,26 +58,14 @@ export const Captcha2 = () => {
     }, []);
 
     useEffect(() => {
-        fetch('/api/healt')
+        fetch('/api/health')
             .then((response) => response.json())
             .then((data) => setMessage(data.message));
     }, []);
 
     return (
         <>
-            {/* <Helmet>
-                <script
-                    src="https://www.google.com/recaptcha/api.js"
-                    //crossorigin="anonymous"
-                    async
-                ></script>
-            </Helmet> */}
-
             <form onSubmit={onSubmitWithReCAPTCHA}>
-                {/* <ReCAPTCHA
-                    ref={recaptchaRef}
-                    sitekey={import.meta.env.VITE_V2_KEY}
-                /> */}
                 <p>{message}</p>;
                 {'Name: (required)'} <input id="field" name="field" />
                 <div ref={recaptchaRef} id="recaptcha-container"></div>
