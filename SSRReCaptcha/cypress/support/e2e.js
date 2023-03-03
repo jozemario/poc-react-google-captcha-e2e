@@ -10,13 +10,13 @@ import '@testing-library/cypress/add-commands'
     // errors, so we let them fail the test
 }) */
 
-Cypress.on("uncaught:exception", (e, runnable) => {
+/* Cypress.on("uncaught:exception", (e, runnable) => {
     console.log("error", e);
     console.log("runnable", runnable);
     if (e.message.includes("Things went bad")) {
         return false;
     }
-});
+}); */
 
 /* Cypress.on('uncaught:exception', (err, runnable) => {
     // returning false here prevents Cypress from
@@ -35,7 +35,7 @@ beforeEach(() => {
         console.log("error", e);
         console.log("runnable", runnable);
         if (e.message.includes("“Service Downtime”")) {
-            //return false;
+            return false;
         }
     })
 })

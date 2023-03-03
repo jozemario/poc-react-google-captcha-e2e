@@ -9,10 +9,12 @@ const requestOptions = [];
 window.grecaptcha = {
     ready: callback => callback(),
     execute: key => {
+        const token = "FAKE_TOKEN"
         if (requestOptions[key] && requestOptions[key].callback) {
-            requestOptions[key].callback("FAKE_TOKEN");
+            requestOptions[key].callback(token);
         }
-        return Promise.resolve("FAKE_TOKEN");
+        console.log('recaptcha callback', token);
+        return Promise.resolve(token);
     },
     getResponse: key => {
         return 1;

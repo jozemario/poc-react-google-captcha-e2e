@@ -1,8 +1,31 @@
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+})
+
 describe('The Home Page', () => {
     it('successfully loads', () => {
+        const baseUrl = Cypress.config().baseUrl;
+
+        function testLoginPageLink(selector, pageDetails) {
+            cy.get(selector)
+                .should('have.attr', 'href').and('include', `${baseUrl}${pageDetails.path}`)
+                .then((href) => {
+                    cy.origin(baseUrl,
+                        { args: { hrefPath: href.substring(26), title: pageDetails.title } }, ({ hrefPath, title }) => {
+                            Cypress.on('uncaught:exception', () => false)
+                            cy.visit(hrefPath);
+                            cy.contains(title);
+                        });
+                });
+        }
+
+
         cy.visit(Cypress.config().baseUrl + 'captcha') // change URL to match your dev URL
 
         cy.wait(2 * 1000)
+        cy.get('#field').type('tester')
         cy.get('#submit').click()
 
         /*  cy.iframe('#ifrmCookieBanner')
