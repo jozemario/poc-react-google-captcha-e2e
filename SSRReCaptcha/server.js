@@ -26,7 +26,7 @@ export async function createServer(
 
     const app = express()
 
-    //app.use('/api', apiRouter);
+
 
 
     /**
@@ -64,7 +64,11 @@ export async function createServer(
         )
     }
 
+    app.use('/api', apiRouter);
+
     app.use('*', async (req, res) => {
+
+
         try {
             const url = req.originalUrl
 

@@ -7,3 +7,22 @@ Cypress.Commands.add('setSessionStorage', (key, value) => {
         window.sessionStorage.setItem(key, value)
     })
 })
+
+Cypress.Commands.add('createUser', (user, url, method) => {
+    cy.request({
+        method: method,
+        url: url,
+        body: {
+            email: user.username,
+            password: user.password,
+        },
+    }).then((resp) => {
+        cy.log(resp.body)
+        /* cy.request({
+            method: 'POST',
+            url: 'https://www.example.com/users',
+            headers: { Authorization: 'Bearer ' + resp.body.token },
+            body: user,
+        }) */
+    })
+})

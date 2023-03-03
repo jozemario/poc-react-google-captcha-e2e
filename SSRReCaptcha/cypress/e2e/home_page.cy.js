@@ -28,6 +28,8 @@ describe('The Home Page', () => {
         cy.get('#field').type('tester')
         cy.get('#submit').click()
 
+        cy.createUser({ username: 'TEst', password: 'password' }, 'api/health', 'GET')
+
         /*  cy.iframe('#ifrmCookieBanner')
              .find('#grouped-pageload-Banner button[class*="save-consents evSpAcceptBtn"]')
              .should('be.visible')
